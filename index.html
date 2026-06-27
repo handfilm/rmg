@@ -1732,20 +1732,17 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
   <div class="drawer-footer">© 2026 H&H Nexus · 23.8103°N 90.4125°E · Dhaka, Bangladesh</div>
 </div>
 <script>
-  // Step 1: Target the empty container
   const container = document.getElementById('photo-injector');
 
-  // Step 2: Loop 14 times
   for (let i = 1; i <= 14; i++) {
     
-    // Step 3: Define the structure, injecting the exact naming convention
+    // Notice the space added right after 'rmg' and before the parenthesis
     let photoModule = `
       <div class="catalogue-item">
-        <img src="./assets/img/rmg(${i}).jpeg" alt="RMG Visual ${i}" loading="lazy">
+        <img src="./assets/img/rmg (${i}).jpeg" alt="RMG Visual ${i}" loading="lazy">
       </div>
     `;
 
-    // Step 4: Inject the module into the container
     container.innerHTML += photoModule;
   }
 </script>
