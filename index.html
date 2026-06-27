@@ -1487,7 +1487,9 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
 
     </div>
 </section>
-
+<section id="visual-catalogue" class="catalogue-section">
+  <div id="photo-injector" class="catalogue-grid"></div>
+</section>
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1729,6 +1731,26 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
   </div>
   <div class="drawer-footer">© 2026 H&H Nexus · 23.8103°N 90.4125°E · Dhaka, Bangladesh</div>
 </div>
+<script>
+  // Step 1: Target the empty container
+  const container = document.getElementById('photo-injector');
 
+  // Step 2: Loop 14 times
+  for (let i = 1; i <= 14; i++) {
+    
+    // Step 3: Add a leading zero to numbers 1-9 (e.g., 01, 02)
+    let photoNumber = i < 10 ? '0' + i : i; 
+    
+    // Step 4: Define the brutalist structure for each image
+    let photoModule = `
+      <div class="catalogue-item">
+        <img src="./assets/img/rmg-${photoNumber}.jpg" alt="RMG Visual ${photoNumber}" loading="lazy">
+      </div>
+    `;
+
+    // Step 5: Inject the module into the container
+    container.innerHTML += photoModule;
+  }
+</script>
 </body>
 </html>
