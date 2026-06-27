@@ -256,6 +256,127 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
 .wa-float{position:fixed;bottom:2rem;right:2rem;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.3);z-index:99;transition:transform .2s,box-shadow .2s}
 .wa-float:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(37,211,102,.5)}
 
+
+/* PORTALS DRAWER */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.portals-drawer{position:fixed;top:0;right:-360px;width:320px;height:100vh;background:#0e0e0e;border-left:1px solid #1e1e1e;z-index:201;transition:right .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;display:flex;flex-direction:column}
+.portals-drawer.open{right:0}
+.drawer-header{padding:1.5rem;border-bottom:1px solid #1e1e1e;display:flex;align-items:center;justify-content:space-between;background:#080808}
+.drawer-htitle{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.12em;color:#fff}
+.drawer-htitle span{color:#c4963a}
+.drawer-close{font-size:18px;color:#555;cursor:pointer;background:none;border:none;line-height:1;padding:6px;transition:color .2s}
+.drawer-close:hover{color:#c4963a}
+.drawer-body{padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;flex:1}
+.drawer-sec-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;color:#c4963a;text-transform:uppercase;padding:.5rem 0;border-bottom:1px solid #1e1e1e;margin-bottom:.25rem}
+.pc{border:1px solid #1e1e1e;padding:1.25rem;text-decoration:none;display:block;transition:border-color .2s,background .2s;position:relative;background:#0a0a0a}
+.pc:hover{border-color:#c4963a;background:#161616}
+.pc.active{border-color:#c4963a40;background:#0a0a0a;opacity:.55;pointer-events:none;cursor:default}
+.pc.parent{border-color:#c4963a33}
+.pc.parent:hover{border-color:#c4963a;background:#161616}
+.pc-eye{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:#c4963a;text-transform:uppercase;margin-bottom:.4rem}
+.pc-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:#fff;margin-bottom:.4rem;line-height:1}
+.pc-desc{font-family:'DM Mono',monospace;font-size:10px;color:#555;letter-spacing:.04em;line-height:1.6}
+.pc-arrow{position:absolute;top:1.25rem;right:1.25rem;color:#c4963a;font-size:14px;font-family:'DM Mono',monospace}
+.pc.active .pc-arrow{display:none}
+.active-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:#aaff00;text-transform:uppercase;margin-top:.5rem;display:flex;align-items:center;gap:.3rem}
+.active-badge::before{content:'●';animation:pulse 2s infinite}
+.drawer-footer{padding:1.25rem 1.5rem;border-top:1px solid #1e1e1e;font-family:'DM Mono',monospace;font-size:9px;color:#333;letter-spacing:.08em}
+.portals-btn{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;padding:7px 12px;border:1px solid #2a2a2a;background:transparent;color:#555;cursor:pointer;transition:all .2s;text-transform:uppercase;display:flex;align-items:center;gap:.4rem;white-space:nowrap}
+.portals-btn:hover{border-color:#c4963a;color:#c4963a}
+/* PORTALS SECTION */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border);margin-top:3rem}
+.pgc{padding:2.5rem 2rem;text-decoration:none;display:flex;flex-direction:column;gap:.75rem;background:var(--bg2);transition:background .2s;position:relative;border:none}
+.pgc:hover{background:var(--bg3)}
+.pgc.active-portal{background:var(--bg3);border-left:2px solid var(--gold)}
+.pgc-eye{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;color:#c4963a;text-transform:uppercase}
+.pgc-name{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;color:#fff;line-height:1}
+.pgc-desc{font-family:'DM Mono',monospace;font-size:11px;color:#555;letter-spacing:.04em;line-height:1.7;flex:1}
+.pgc-link{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;color:#c4963a;text-transform:uppercase;margin-top:.5rem}
+.pgc.active-portal .pgc-link{color:#aaff00}
+.pgc-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:#aaff00;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;margin-top:-.25rem}
+.pgc-badge::before{content:'●';animation:pulse 2s infinite}
+
+/* CAMPAIGN GALLERY */
+.campaign-gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:280px;
+  gap:2px;
+  background:var(--border);
+  margin-top:3rem;
+}
+.cg-item{
+  position:relative;
+  overflow:hidden;
+  background:var(--bg3);
+  cursor:pointer;
+}
+.cg-item.tall{ grid-row:span 2; }
+.cg-item.wide{ grid-column:span 2; }
+.cg-item img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(15%) brightness(.82) saturate(.9);
+  transition:filter .5s ease, transform .6s cubic-bezier(.25,.46,.45,.94);
+  transform-origin:center;
+}
+.cg-item:hover img{
+  filter:grayscale(0%) brightness(1) saturate(1.1);
+  transform:scale(1.06);
+}
+.cg-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.75) 100%);
+  opacity:0;
+  transition:opacity .4s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:1.25rem;
+  pointer-events:none;
+}
+.cg-item:hover .cg-overlay{ opacity:1; }
+.cg-label{
+  font-family:var(--ff-mono);
+  font-size:9px;
+  letter-spacing:.18em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:.3rem;
+  transform:translateY(8px);
+  transition:transform .4s ease;
+}
+.cg-name{
+  font-family:var(--ff-disp);
+  font-size:18px;
+  letter-spacing:.06em;
+  color:var(--white);
+  line-height:1;
+  transform:translateY(8px);
+  transition:transform .4s ease .05s;
+}
+.cg-item:hover .cg-label,
+.cg-item:hover .cg-name{
+  transform:translateY(0);
+}
+.cg-brand-stamp{
+  position:absolute;
+  top:.75rem;
+  left:.75rem;
+  font-family:var(--ff-mono);
+  font-size:8px;
+  letter-spacing:.15em;
+  color:rgba(255,255,255,.5);
+  text-transform:uppercase;
+  opacity:0;
+  transition:opacity .3s;
+}
+.cg-item:hover .cg-brand-stamp{ opacity:1; }
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .nav-links{display:none}
@@ -270,10 +391,14 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
   .gallery-strip{grid-template-columns:repeat(2,1fr)}
   .gi.wide{grid-column:span 1;aspect-ratio:4/3}
   .slide-badge{display:none}
+  .campaign-gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:240px}
+  .cg-item.wide{grid-column:span 1}
+  .cg-item.tall{grid-row:span 1}
 }
 @media(max-width:600px){
   .slide-headline{font-size:42px}
   .cat-tab{font-size:10px;padding:10px 14px;letter-spacing:.08em}
+  .campaign-gallery{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
 }
 </style>
 </head>
@@ -304,6 +429,7 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
     <li><a href="#process" data-lang="en">Process</a><a href="#process" data-lang="nl">Proces</a><a href="#process" data-lang="de">Prozess</a><a href="#process" data-lang="bn">প্রক্রিয়া</a><a href="#process" data-lang="ja">プロセス</a></li>
     <li><a href="#tracker">Tracker</a></li>
     <li><a href="#contact" data-lang="en">Contact</a><a href="#contact" data-lang="nl">Contact</a><a href="#contact" data-lang="de">Kontakt</a><a href="#contact" data-lang="bn">যোগাযোগ</a><a href="#contact" data-lang="ja">お問い合わせ</a></li>
+    <li><a href="#gallery" data-lang="en">Gallery</a><a href="#gallery" data-lang="nl">Galerij</a><a href="#gallery" data-lang="de">Galerie</a><a href="#gallery" data-lang="bn">গ্যালারি</a><a href="#gallery" data-lang="ja">ギャラリー</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-toggle">
@@ -320,6 +446,7 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
       <span data-lang="bn">মূল্য জানুন</span>
       <span data-lang="ja">見積もり</span>
     </a>
+    <button class="portals-btn" onclick="openDrawer()">⊞ PORTALS</button>
     <button class="hamburger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -332,6 +459,7 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
   <a href="#tracker" onclick="toggleMobileNav()">Tracker</a>
   <a href="#rfq" onclick="toggleMobileNav()">Request Quote</a>
   <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+  <a href="#gallery" onclick="toggleMobileNav()">Gallery</a>
 </div>
 
 <!-- HERO SLIDER -->
@@ -1362,199 +1490,136 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="footer-logo">HANDS <span>&</span> HEAD</div>
-      <div class="footer-tag">Bangladesh RMG · EU & US Export Partner · Est. 1998</div>
-      <div style="font-family:var(--ff-mono);font-size:10px;color:var(--muted2);letter-spacing:.06em;margin-top:.5rem">Part of H&H Nexus · <a href="https://www.handsandhead.com" style="color:var(--gold);text-decoration:none">www.handsandhead.com</a></div>
-    </div>
-    <div>
-      <div class="footer-col-title">Products</div>
-      <ul class="footer-links">
-        <li><a href="#products">Knitwear</a></li>
-        <li><a href="#products">Woven</a></li>
-        <li><a href="#products">Activewear</a></li>
-        <li><a href="#products">Lingerie</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Information</div>
-      <ul class="footer-links">
-        <li><a href="#compliance">Compliance</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#tracker">Order Tracker</a></li>
-        <li><a href="#why">Why H&H</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Markets</div>
-      <ul class="footer-links">
-        <li><a href="#markets">🇳🇱 Netherlands</a></li>
-        <li><a href="#markets">🇩🇪 Germany</a></li>
-        <li><a href="#markets">🇬🇧 UK</a></li>
-        <li><a href="#markets">🇺🇸 United States</a></li>
-        <li><a href="#markets">🇯🇵 Japan</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Sister Brands</div>
-      <ul class="footer-links">
-        <li><a href="https://handfilm.github.io/arutemika-eu/" target="_blank">Arutemika (Leather)</a></li>
-        <li><a href="https://handfilm.github.io/NexOS/" target="_blank">NexOS Platform</a></li>
-        <li><a href="https://www.handsandhead.com" target="_blank">H&H Nexus</a></li>
-        <li><a href="https://handfilm.github.io/aural/" target="_blank">HANDFILM</a></li>
-      </ul>
-    </div>
+<!-- PORTALS SECTION -->
+<section class="section" id="portals" style="background:var(--bg2)">
+  <div class="section-eyebrow">H&H Nexus Group</div>
+  <div class="section-title reveal">OUR <span class="accent">PORTALS</span></div>
+  <div class="section-sub reveal">All three platforms under one roof. Leather goods, apparel, and the main brand — Bangladesh B2B manufacturing at full scale.</div>
+  <div class="pgrid reveal">
+    <a href="https://handfilm.github.io/arutemika-eu/" target="_blank" class="pgc">
+      <div class="pgc-eye">Leather Goods · Est. 1998</div>
+      <div class="pgc-name">ARUTEMIKA</div>
+      <div class="pgc-desc">Genuine leather manufacturer. Laptop bags, tote bags, wallets, crossbody, backpacks, footwear. BSCI audited. MOQ 200 pcs. EU export partner. EN · NL · DE · বাং · 日本.</div>
+      <div class="pgc-link">Open Portal →</div>
+    </a>
+    <a # class="pgc active-portal">
+      <div class="pgc-eye">RMG Apparel · EU & US</div>
+      <div class="pgc-name">HANDS & HEAD</div>
+      <div class="pgc-desc">Bangladesh RMG manufacturer. Knitwear, Woven, Activewear, Lingerie. T-shirts to lingerie. BSCI · OEKO-TEX · GOTS ready. MOQ 200 pcs. 5 language portal.</div>
+      <div class="pgc-badge">CURRENT PORTAL</div>
+    </a>
+    <a href="https://www.handsandhead.com/" target="_blank" class="pgc">
+      <div class="pgc-eye">Parent Platform · Dhaka, BD</div>
+      <div class="pgc-name">H&H NEXUS</div>
+      <div class="pgc-desc">Main brand website. NexOS supply chain OS. HANDFILM content studio. RAWx fashion. Complete Bangladesh B2B ecosystem under one group.</div>
+      <div class="pgc-link">Visit Website →</div>
+    </a>
   </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">© 2026 HANDS & HEAD · Bangladesh RMG Apparel Manufacturer · All Rights Reserved</div>
-    <div class="footer-coords">23.8103°N · 90.4125°E · DHAKA, BANGLADESH</div>
-  </div>
-</footer>
+</section>
 
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/8801974518600?text=Hi%20HANDS%20%26%20HEAD%2C%20I%20am%20interested%20in%20sourcing%20apparel." class="wa-float" target="_blank" title="WhatsApp">💬</a>
+<!-- CAMPAIGN GALLERY -->
+<section class="section" id="gallery" style="padding-bottom:0">
+  <div class="section-eyebrow">Campaign Gallery</div>
+  <div class="section-title reveal">PRODUCT IN <span class="acc">ACTION</span></div>
+  <div class="section-sub reveal">RAWx apparel &amp; H&amp;H collections — AI-cinematic campaign visuals. From Dhaka with craft.</div>
 
-<script>
-// LANGUAGE
-function setLang(lang,btn){
-  document.body.className='lang-'+lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
+  <div class="campaign-gallery reveal">
 
-// MOBILE NAV
-function toggleMobileNav(){
-  document.getElementById('mobileNav').classList.toggle('open');
-}
+    <!-- ROW 1 -->
+    <!-- 1 — RAWx crop tee front (tall) -->
+    <div class="cg-item tall">
+      <img src="30132_0012-01.jpeg" alt="RAWx Crop Raglan — Front" loading="lazy">
+      <div class="cg-brand-stamp">RAWx · Knitwear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">RAWx · Crop Raglan</div>
+        <div class="cg-name">MAROON /<br>SAND TEE</div>
+      </div>
+    </div>
 
-// HERO SLIDER
-let currentSlide=0;
-let sliderTimer=null;
-const slides=document.querySelectorAll('.slide');
-const dots=document.querySelectorAll('.dot');
+    <!-- 2 — FIFA 26 green tee seated (normal) -->
+    <div class="cg-item">
+      <img src="1781554944343-01.jpeg" alt="FIFA 26 Green Tee" loading="lazy">
+      <div class="cg-brand-stamp">H&H · Knitwear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">H&amp;H · Event Tee</div>
+        <div class="cg-name">FIFA 26<br>CAN MEX USA</div>
+      </div>
+    </div>
 
-function goToSlide(n){
-  slides[currentSlide].classList.remove('active');
-  dots[currentSlide].classList.remove('active');
-  currentSlide=n;
-  slides[currentSlide].classList.add('active');
-  dots[currentSlide].classList.add('active');
-  // Reset dot animation
-  dots.forEach(d=>{d.classList.remove('active')});
-  dots[currentSlide].classList.add('active');
-}
+    <!-- 3 — Bodysuit geometric front with mirror (normal) -->
+    <div class="cg-item">
+      <img src="1782573761941-01.jpeg" alt="Geometric Bodysuit — Mirror" loading="lazy">
+      <div class="cg-brand-stamp">H&H · Activewear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">H&amp;H · Bodysuit</div>
+        <div class="cg-name">ARCH PRINT<br>BODYSUIT</div>
+      </div>
+    </div>
 
-function slideMove(dir){
-  let next=(currentSlide+dir+slides.length)%slides.length;
-  goToSlide(next);
-  resetTimer();
-}
+    <!-- 4 — Kareena RAWx lime kitchen (normal) -->
+    <div class="cg-item">
+      <img src="RAWx-Kareena_02__5_-01.jpeg" alt="RAWx Lime Oversized Tee" loading="lazy">
+      <div class="cg-brand-stamp">RAWx · Knitwear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">RAWx · Oversize</div>
+        <div class="cg-name">NEON LIME<br>LOGO TEE</div>
+      </div>
+    </div>
 
-function resetTimer(){
-  clearInterval(sliderTimer);
-  sliderTimer=setInterval(()=>slideMove(1),5000);
-}
+    <!-- ROW 2 -->
+    <!-- 5 — RAWx side profile (continues tall from item 1) already covered -->
 
-resetTimer();
+    <!-- 6 — RAWx back bodysuit (wide) -->
+    <div class="cg-item wide">
+      <img src="1782573563903-01.jpeg" alt="RAWx Bodysuit Back — Repeat Logo" loading="lazy">
+      <div class="cg-brand-stamp">RAWx · Activewear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">RAWx · Bodysuit</div>
+        <div class="cg-name">TEAL REPEAT-LOGO BODYSUIT</div>
+      </div>
+    </div>
 
-// PRODUCT CATEGORY FILTER
-function filterCat(cat,btn){
-  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.product-card').forEach(card=>{
-    if(cat==='all'||card.dataset.cat===cat){
-      card.classList.add('visible');
-    } else {
-      card.classList.remove('visible');
-    }
-  });
-}
+    <!-- 7 — FIFA 26 LA white tee palace courtyard -->
+    <div class="cg-item">
+      <img src="55520-01.jpeg" alt="FIFA 26 Los Angeles White Tee" loading="lazy">
+      <div class="cg-brand-stamp">H&H · Knitwear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">H&amp;H · Event Tee</div>
+        <div class="cg-name">FIFA 26<br>LOS ANGELES</div>
+      </div>
+    </div>
 
-// OPEN RFQ PRE-FILLED
-function openRFQ(product){
-  const sel=document.getElementById('productCat');
-  for(let o of sel.options){
-    if(o.value.includes(product.split(' ')[0])||o.text.includes(product)){
-      sel.value=o.value;break;
-    }
-  }
-  document.getElementById('rfq').scrollIntoView({behavior:'smooth'});
-}
+    <!-- 8 — FIFA 26 Kansas City black tee -->
+    <div class="cg-item">
+      <img src="1781554901277-01.jpeg" alt="FIFA 26 Kansas City Black Tee" loading="lazy">
+      <div class="cg-brand-stamp">H&H · Knitwear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">H&amp;H · Event Tee</div>
+        <div class="cg-name">FIFA 26<br>KANSAS CITY</div>
+      </div>
+    </div>
 
-// SUBMIT RFQ
-function submitRFQ(){
-  const firstName=document.getElementById('firstName').value.trim();
-  const lastName=document.getElementById('lastName').value.trim();
-  const company=document.getElementById('company').value.trim();
-  const email=document.getElementById('email').value.trim();
-  const country=document.getElementById('country').value;
-  const productCat=document.getElementById('productCat').value;
-  const quantity=document.getElementById('quantity').value;
-  const material=document.getElementById('material').value;
-  const message=document.getElementById('message').value;
+    <!-- ROW 3 -->
+    <!-- 9 — RAWx side pose (tall) -->
+    <div class="cg-item tall">
+      <img src="30132_0025-01.jpeg" alt="RAWx Crop Raglan — Side Pose" loading="lazy">
+      <div class="cg-brand-stamp">RAWx · Knitwear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">RAWx · Crop Raglan</div>
+        <div class="cg-name">SIDE PROFILE<br>CAMPAIGN</div>
+      </div>
+    </div>
 
-  if(!firstName||!email||!productCat){
-    alert('Please fill in Name, Email and Category at minimum.');
-    return;
-  }
+    <!-- 10 — Geometric crop tee with teal bodysuit full length -->
+    <div class="cg-item">
+      <img src="1782573710082-01.jpeg" alt="Geometric Crop Tee Full Length" loading="lazy">
+      <div class="cg-brand-stamp">H&H · Activewear</div>
+      <div class="cg-overlay">
+        <div class="cg-label">H&amp;H · Set</div>
+        <div class="cg-name">BAUHAUS CROP<br>TEAL BODYSUIT</div>
+      </div>
+    </div>
 
-  const btn=document.querySelector('.form-submit');
-  btn.textContent='SENDING...';
-  btn.disabled=true;
-  btn.style.opacity='.6';
-
-  const payload={
-    firstName,lastName,company,email,country,
-    productCat,quantity,material,message,
-    timestamp:new Date().toISOString(),
-    source:'hands-head-rmg-portal'
-  };
-
-  fetch('YOUR_MAKE_COM_WEBHOOK_URL_HERE',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify(payload)
-  })
-  .then(()=>{
-    document.getElementById('rfqForm').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-  })
-  .catch(err=>{
-    console.error(err);
-    btn.textContent='SEND REQUEST — RESPONSE IN 24H →';
-    btn.disabled=false;
-    btn.style.opacity='1';
-    alert('Error. Please contact: himon@handsandhead.com');
-  });
-}
-
-// SCROLL REVEAL
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
-  });
-},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-// PROGRESS BAR
-const pf=document.querySelector('.prog-fill');
-const po=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)pf.style.width='70%'});
-},{threshold:.5});
-if(pf)po.observe(pf.parentElement);
-
-// NAV ACTIVE ON SCROLL
-const secs=document.querySelectorAll('section[id]');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
-  document.querySelectorAll('.nav-links a').forEach(a=>{
-    a.style.color=a.getAttribute('href')==='#'+cur?'var(--gold)':'';
-  });
-});
-</script>
-</body>
-</html>
+    <!-- 11 — FIFA 26 LA white courtyard temple -->
+    <div class="cg-item">
+      <img src="56454-01.jpeg" alt
