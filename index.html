@@ -296,7 +296,47 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
 .pgc.active-portal .pgc-link{color:#aaff00}
 .pgc-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:#aaff00;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;margin-top:-.25rem}
 .pgc-badge::before{content:'●';animation:pulse 2s infinite}
+/* CATALOGUE MODULE CSS */
+.catalogue-section {
+  padding: 60px 20px;
+  background-color: #050505; /* Deep, raw background */
+  border-top: 1px solid #333; /* Clean separation line */
+}
 
+/* The Grid System */
+.catalogue-grid {
+  display: grid;
+  /* Auto-fits columns minimum 180px wide, stretching to fill space */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px; /* Sharp, precise spacing */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Image Container */
+.catalogue-item {
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Classic portrait aspect ratio for apparel */
+  overflow: hidden;
+  background-color: #111;
+}
+
+/* Image Behavior */
+.catalogue-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Forces a brutal, high-contrast look on load */
+  filter: grayscale(100%) contrast(1.2); 
+  transition: all 0.3s ease;
+}
+
+/* Interaction: Color reveals on tap/hover */
+.catalogue-item:hover img,
+.catalogue-item:active img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.03); /* Subtle mechanical punch inward */
+}
 /* RESPONSIVE */
 @media(max-width:900px){
   .nav-links{display:none}
