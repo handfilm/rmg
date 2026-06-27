@@ -1738,17 +1738,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
   // Step 2: Loop 14 times
   for (let i = 1; i <= 14; i++) {
     
-    // Step 3: Add a leading zero to numbers 1-9 (e.g., 01, 02)
-    let photoNumber = i < 10 ? '0' + i : i; 
-    
-    // Step 4: Define the brutalist structure for each image
+    // Step 3: Define the structure, injecting the exact naming convention
     let photoModule = `
       <div class="catalogue-item">
-        <img src="./assets/img/rmg-${photoNumber}.jpg" alt="RMG Visual ${photoNumber}" loading="lazy">
+        <img src="./assets/img/rmg(${i}).jpeg" alt="RMG Visual ${i}" loading="lazy">
       </div>
     `;
 
-    // Step 5: Inject the module into the container
+    // Step 4: Inject the module into the container
     container.innerHTML += photoModule;
   }
 </script>
