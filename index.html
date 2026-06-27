@@ -63,7 +63,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.95);backdrop-filter
 .slide.active{opacity:1}
 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 8s ease}
 .slide.active .slide-bg{transform:scale(1.04)}
-.slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.18) 100%)}
+.slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.1) 100%)}
 .slide-tag{font-family:var(--ff-mono);font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;position:relative;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
 .slide-tag::before{content:'';width:28px;height:1px;background:var(--gold);display:inline-block}
 .slide-headline{font-family:var(--ff-disp);font-size:clamp(52px,9vw,120px);line-height:.92;letter-spacing:.02em;color:var(--white);position:relative;margin-bottom:1.5rem}
@@ -239,20 +239,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.95);backdrop-filter
 .gi:hover .gi-cap{opacity:1}
 .gi.wide{grid-column:span 2;aspect-ratio:16/9}
 
-/* CAMPAIGN GALLERY */
-.cg-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);margin-top:3rem}
-.cg-item{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--bg3)}
-.cg-item.land{aspect-ratio:4/3}
-.cg-item img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(10%) brightness(.85);transition:filter .5s ease,transform .6s cubic-bezier(.25,.46,.45,.94)}
-.cg-item:hover img{filter:grayscale(0%) brightness(1.02);transform:scale(1.05)}
-.cg-cap{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 55%);opacity:0;transition:opacity .35s;display:flex;flex-direction:column;justify-content:flex-end;padding:1rem;pointer-events:none}
-.cg-item:hover .cg-cap{opacity:1}
-.cg-brand{font-family:var(--ff-mono);font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:.25rem;transform:translateY(6px);transition:transform .35s}
-.cg-title{font-family:var(--ff-disp);font-size:16px;letter-spacing:.06em;color:var(--white);line-height:1.1;transform:translateY(6px);transition:transform .35s .04s}
-.cg-item:hover .cg-brand,.cg-item:hover .cg-title{transform:translateY(0)}
-@media(max-width:900px){.cg-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.cg-grid{grid-template-columns:repeat(2,1fr)}.cg-item,.cg-item.land{aspect-ratio:3/4}}
-
 /* FOOTER */
 footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:2rem}
 .footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem}
@@ -310,7 +296,47 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
 .pgc.active-portal .pgc-link{color:#aaff00}
 .pgc-badge{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:#aaff00;text-transform:uppercase;display:inline-flex;align-items:center;gap:.3rem;margin-top:-.25rem}
 .pgc-badge::before{content:'●';animation:pulse 2s infinite}
+/* CATALOGUE MODULE CSS */
+.catalogue-section {
+  padding: 60px 20px;
+  background-color: #050505; /* Deep, raw background */
+  border-top: 1px solid #333; /* Clean separation line */
+}
 
+/* The Grid System */
+.catalogue-grid {
+  display: grid;
+  /* Auto-fits columns minimum 180px wide, stretching to fill space */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px; /* Sharp, precise spacing */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Image Container */
+.catalogue-item {
+  width: 100%;
+  aspect-ratio: 4 / 5; /* Classic portrait aspect ratio for apparel */
+  overflow: hidden;
+  background-color: #111;
+}
+
+/* Image Behavior */
+.catalogue-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Forces a brutal, high-contrast look on load */
+  filter: grayscale(100%) contrast(1.2); 
+  transition: all 0.3s ease;
+}
+
+/* Interaction: Color reveals on tap/hover */
+.catalogue-item:hover img,
+.catalogue-item:active img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.03); /* Subtle mechanical punch inward */
+}
 /* RESPONSIVE */
 @media(max-width:900px){
   .nav-links{display:none}
@@ -395,7 +421,7 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
 
   <!-- SLIDE 1 — Knitwear -->
   <div class="slide active" data-slide="0">
-    <div class="slide-bg" style="background-image:url('Picsart_26-06-28_05-20-35-895.jpg');background-position:center top"></div>
+    <div class="slide-bg" style="background-image:url('IMG_COM_2026062717064490612.webp')"></div>
     <div class="slide-overlay"></div>
     <div class="slide-badge">
       <div class="badge-item live">● EU EXPORT READY</div>
@@ -1444,86 +1470,26 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
     </a>
   </div>
 </section>
-
-<!-- CAMPAIGN GALLERY -->
-<section class="section" id="gallery">
-  <div class="section-eyebrow">Campaign Gallery</div>
-  <div class="section-title reveal">PRODUCT IN <span class="acc">ACTION</span></div>
-  <div class="cg-grid reveal">
-
-    <div class="cg-item">
-      <img src="30132_0012-01.jpeg" alt="RAWx Crop Raglan Front" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Knitwear</div><div class="cg-title">MAROON CROP RAGLAN</div></div>
+<section id="visual-catalogue" class="catalogue-section">
+  
+  <div class="catalogue-grid">
+    <div class="catalogue-item">
+      <img src="./assets/img/rmg-01.jpg" alt="RMG Catalogue 01" loading="lazy">
     </div>
 
-    <div class="cg-item">
-      <img src="1781554944343-01.jpeg" alt="FIFA 26 Green Tee" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Event Tee</div><div class="cg-title">FIFA 26 CAN MEX USA</div></div>
+    <div class="catalogue-item">
+      <img src="./assets/img/rmg-02.jpg" alt="RMG Catalogue 02" loading="lazy">
     </div>
 
-    <div class="cg-item land">
-      <img src="1782573761941-01.jpeg" alt="Geometric Bodysuit Mirror" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Activewear</div><div class="cg-title">ARCH PRINT BODYSUIT</div></div>
+    <div class="catalogue-item">
+      <img src="./assets/img/rmg-03.jpg" alt="RMG Catalogue 03" loading="lazy">
     </div>
 
-    <div class="cg-item land">
-      <img src="RAWx-Kareena_02__5_-01.jpeg" alt="RAWx Lime Oversized Tee" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Oversize</div><div class="cg-title">NEON LIME LOGO TEE</div></div>
     </div>
-
-    <div class="cg-item">
-      <img src="30132_0025-01.jpeg" alt="RAWx Crop Raglan Side" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Campaign</div><div class="cg-title">SIDE PROFILE</div></div>
-    </div>
-
-    <div class="cg-item land">
-      <img src="1782573563903-01.jpeg" alt="RAWx Bodysuit Back" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Activewear</div><div class="cg-title">TEAL REPEAT BODYSUIT</div></div>
-    </div>
-
-    <div class="cg-item land">
-      <img src="55520-01.jpeg" alt="FIFA 26 LA White Tee" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Event Tee</div><div class="cg-title">FIFA 26 LOS ANGELES</div></div>
-    </div>
-
-    <div class="cg-item">
-      <img src="1781554901277-01.jpeg" alt="FIFA 26 Kansas City Black" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Event Tee</div><div class="cg-title">FIFA 26 KANSAS CITY</div></div>
-    </div>
-
-    <div class="cg-item land">
-      <img src="1782573710082-01.jpeg" alt="Geometric Crop Tee Full" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Set</div><div class="cg-title">BAUHAUS CROP + TEAL</div></div>
-    </div>
-
-    <div class="cg-item">
-      <img src="56454-01.jpeg" alt="FIFA 26 LA Temple" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Event Tee</div><div class="cg-title">FIFA 26 LA TEMPLE</div></div>
-    </div>
-
-    <div class="cg-item">
-      <img src="55534-01.jpeg" alt="FIFA 26 Maroon CAN MEX USA" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">H&amp;H · Event Tee</div><div class="cg-title">FIFA 26 MAROON EDIT</div></div>
-    </div>
-
-    <div class="cg-item">
-      <img src="32339-01.jpeg" alt="RAWx Lime Street Edit" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Street</div><div class="cg-title">LIME TEE STREET EDIT</div></div>
-    </div>
-
-    <div class="cg-item">
-      <img src="30132_0035-01.jpeg" alt="RAWx Crop Front Close" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Detail</div><div class="cg-title">LOGO CLOSE DETAIL</div></div>
-    </div>
-
-    <div class="cg-item">
-      <img src="30132_0032-01.jpeg" alt="RAWx Crop 3/4 Angle" loading="lazy">
-      <div class="cg-cap"><div class="cg-brand">RAWx · Campaign</div><div class="cg-title">¾ BACK POSE</div></div>
-    </div>
-
-  </div>
 </section>
-
+<section id="visual-catalogue" class="catalogue-section">
+  <div id="photo-injector" class="catalogue-grid"></div>
+</section>
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1556,4 +1522,229 @@ footer{padding:3rem 2rem;border-top:1px solid var(--border);display:flex;flex-di
         <li><a href="#markets">🇳🇱 Netherlands</a></li>
         <li><a href="#markets">🇩🇪 Germany</a></li>
         <li><a href="#markets">🇬🇧 UK</a></li>
-        <li><a href="#market
+        <li><a href="#markets">🇺🇸 United States</a></li>
+        <li><a href="#markets">🇯🇵 Japan</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Sister Brands</div>
+      <ul class="footer-links">
+        <li><a href="https://handfilm.github.io/arutemika-eu/" target="_blank">Arutemika (Leather)</a></li>
+        <li><a href="https://handfilm.github.io/NexOS/" target="_blank">NexOS Platform</a></li>
+        <li><a href="https://www.handsandhead.com" target="_blank">H&H Nexus</a></li>
+        <li><a href="https://handfilm.github.io/aural/" target="_blank">HANDFILM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 HANDS & HEAD · Bangladesh RMG Apparel Manufacturer · All Rights Reserved</div>
+    <div class="footer-coords">23.8103°N · 90.4125°E · DHAKA, BANGLADESH</div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/8801974518600?text=Hi%20HANDS%20%26%20HEAD%2C%20I%20am%20interested%20in%20sourcing%20apparel." class="wa-float" target="_blank" title="WhatsApp">💬</a>
+
+<script>
+// LANGUAGE
+function setLang(lang,btn){
+  document.body.className='lang-'+lang;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// MOBILE NAV
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// HERO SLIDER
+let currentSlide=0;
+let sliderTimer=null;
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+
+function goToSlide(n){
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide=n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  // Reset dot animation
+  dots.forEach(d=>{d.classList.remove('active')});
+  dots[currentSlide].classList.add('active');
+}
+
+function slideMove(dir){
+  let next=(currentSlide+dir+slides.length)%slides.length;
+  goToSlide(next);
+  resetTimer();
+}
+
+function resetTimer(){
+  clearInterval(sliderTimer);
+  sliderTimer=setInterval(()=>slideMove(1),5000);
+}
+
+resetTimer();
+
+// PRODUCT CATEGORY FILTER
+function filterCat(cat,btn){
+  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card=>{
+    if(cat==='all'||card.dataset.cat===cat){
+      card.classList.add('visible');
+    } else {
+      card.classList.remove('visible');
+    }
+  });
+}
+
+// OPEN RFQ PRE-FILLED
+function openRFQ(product){
+  const sel=document.getElementById('productCat');
+  for(let o of sel.options){
+    if(o.value.includes(product.split(' ')[0])||o.text.includes(product)){
+      sel.value=o.value;break;
+    }
+  }
+  document.getElementById('rfq').scrollIntoView({behavior:'smooth'});
+}
+
+// SUBMIT RFQ
+function submitRFQ(){
+  const firstName=document.getElementById('firstName').value.trim();
+  const lastName=document.getElementById('lastName').value.trim();
+  const company=document.getElementById('company').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const country=document.getElementById('country').value;
+  const productCat=document.getElementById('productCat').value;
+  const quantity=document.getElementById('quantity').value;
+  const material=document.getElementById('material').value;
+  const message=document.getElementById('message').value;
+
+  if(!firstName||!email||!productCat){
+    alert('Please fill in Name, Email and Category at minimum.');
+    return;
+  }
+
+  const btn=document.querySelector('.form-submit');
+  btn.textContent='SENDING...';
+  btn.disabled=true;
+  btn.style.opacity='.6';
+
+  const payload={
+    firstName,lastName,company,email,country,
+    productCat,quantity,material,message,
+    timestamp:new Date().toISOString(),
+    source:'hands-head-rmg-portal'
+  };
+
+  fetch('YOUR_MAKE_COM_WEBHOOK_URL_HERE',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(()=>{
+    document.getElementById('rfqForm').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  })
+  .catch(err=>{
+    console.error(err);
+    btn.textContent='SEND REQUEST — RESPONSE IN 24H →';
+    btn.disabled=false;
+    btn.style.opacity='1';
+    alert('Error. Please contact: himon@handsandhead.com');
+  });
+}
+
+// SCROLL REVEAL
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+  });
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// PROGRESS BAR
+const pf=document.querySelector('.prog-fill');
+const po=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)pf.style.width='70%'});
+},{threshold:.5});
+if(pf)po.observe(pf.parentElement);
+
+// NAV ACTIVE ON SCROLL
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+cur?'var(--gold)':'';
+  });
+});
+function openDrawer(){
+  document.getElementById('portalsDrawer').classList.add('open');
+  document.getElementById('drawerOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDrawer(){
+  document.getElementById('portalsDrawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+
+</script>
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<!-- PORTALS SIDE DRAWER -->
+<div class="portals-drawer" id="portalsDrawer">
+  <div class="drawer-header">
+    <div class="drawer-htitle">H&H <span>NEXUS</span> PORTALS</div>
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-sec-label">B2B Export Portals</div>
+    <a href="https://handfilm.github.io/arutemika-eu/" class="pc" target="_blank">
+      <span class="pc-arrow">↗</span>
+      <div class="pc-eye">Leather Goods · Est. 1998</div>
+      <div class="pc-name">ARUTEMIKA</div>
+      <div class="pc-desc">Genuine leather bags, laptop cases, wallets, footwear. EU export. BSCI audited. MOQ 200 pcs.</div>
+      
+    </a>
+    <a href="https://handfilm.github.io/rmg/" class="pc active" >
+      <span class="pc-arrow">↗</span>
+      <div class="pc-eye">RMG Apparel · EU & US</div>
+      <div class="pc-name">HANDS & HEAD</div>
+      <div class="pc-desc">Knitwear, Woven, Activewear, Lingerie. Bangladesh RMG manufacturer. 5 languages.</div>
+      <div class="active-badge">CURRENT PORTAL</div>
+    </a>
+    <div class="drawer-sec-label" style="margin-top:.5rem">Main Platform</div>
+    <a href="https://www.handsandhead.com/" class="pc parent" target="_blank">
+      <span class="pc-arrow">↗</span>
+      <div class="pc-eye">Parent Brand · Dhaka, BD</div>
+      <div class="pc-name">H&H NEXUS</div>
+      <div class="pc-desc">Main brand website. NexOS supply chain OS. All brands under H&H Nexus group.</div>
+    </a>
+  </div>
+  <div class="drawer-footer">© 2026 H&H Nexus · 23.8103°N 90.4125°E · Dhaka, Bangladesh</div>
+</div>
+<script>
+  const container = document.getElementById('photo-injector');
+
+  for (let i = 1; i <= 14; i++) {
+    
+    // Notice the space added right after 'rmg' and before the parenthesis
+    let photoModule = `
+      <div class="catalogue-item">
+        <img src="./assets/img/rmg (${i}).jpeg" alt="RMG Visual ${i}" loading="lazy">
+      </div>
+    `;
+
+    container.innerHTML += photoModule;
+  }
+</script>
+</body>
+</html>
